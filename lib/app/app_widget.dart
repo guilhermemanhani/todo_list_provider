@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist_provider/app/core/database/sqlite_adm_connection.dart';
+import 'package:flutter_todolist_provider/app/core/ui/todo_list_ui_config.dart';
 import 'package:flutter_todolist_provider/app/modules/auth/auth_module.dart';
 import 'package:flutter_todolist_provider/app/modules/splash/splash_page.dart';
 
@@ -29,7 +30,10 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp(
       title: 'Todo List Provider',
       initialRoute: '/login',
-      routes: {...AuthModule().routers},
+      theme: TodoListUiConfig.theme,
+      routes: {
+        ...AuthModule().routers,
+      },
       home: SplashPage(),
     );
   }
