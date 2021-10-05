@@ -3,7 +3,6 @@ import 'package:flutter_todolist_provider/app/modules/auth/login/login_controlle
 import 'package:flutter_todolist_provider/app/modules/auth/login/login_page.dart';
 import 'package:flutter_todolist_provider/app/modules/auth/register/register_controller.dart';
 import 'package:flutter_todolist_provider/app/modules/auth/register/register_page.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class AuthModule extends TodoListModule {

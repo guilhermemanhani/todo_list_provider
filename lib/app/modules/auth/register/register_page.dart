@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todolist_provider/app/core/ui/theme_extensions.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_field.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_logo.dart';
-import 'package:path/path.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
