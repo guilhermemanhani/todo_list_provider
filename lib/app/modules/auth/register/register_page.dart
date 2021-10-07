@@ -42,6 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
         Navigator.of(context).pop();
       },
       erroCallback: (notifier, listenerNotifier) {
+        // ignore: avoid_print
         print('Errorrrr');
       },
     );
@@ -54,7 +55,9 @@ class _RegisterPageState extends State<RegisterPage> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: ClipOval(
             child: Container(
               child: Icon(
