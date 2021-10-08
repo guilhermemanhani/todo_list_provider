@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
+import 'package:flutter_todolist_provider/app/core/notifier/default_listener_notifier.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_field.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_logo.dart';
+import 'package:flutter_todolist_provider/app/modules/auth/login/login_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,6 +16,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
+        .listener(
+      context: context,
+      successCallback: (notifier, listenerInstance) {},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +55,12 @@ class _LoginPageState extends State<LoginPage> {
                         vertical: 20,
                       ),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TodoListField(
                               label: 'E-mail',
+                              controller: _emailEC,
                             ),
                             const SizedBox(
                               height: 20,
@@ -48,6 +68,12 @@ class _LoginPageState extends State<LoginPage> {
                             TodoListField(
                               label: 'Senha',
                               obscureText: true,
+                              controller: _passwordEC,
+                              validator: Validatorless.multiple([
+                                Validatorless.required('Senha obrigatória'),
+                                Validatorless.min(6,
+                                    'Senha deve conter pelo menos 6 caracteres'),
+                              ]),
                               // suffixIconButton: IconButton(
                               //   onPressed: () {},
                               //   icon: Icon(Icons.ac_unit),
