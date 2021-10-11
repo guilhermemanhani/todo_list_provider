@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_todolist_provider/app/core/notifier/default_listener_notifier.dart';
+import 'package:flutter_todolist_provider/app/core/ui/messages.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_field.dart';
 import 'package:flutter_todolist_provider/app/core/widget/todo_list_logo.dart';
 import 'package:flutter_todolist_provider/app/modules/auth/login/login_controller.dart';
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailEC = TextEditingController();
   final _passwordEC = TextEditingController();
+  final _emailFocus = FocusNode();
 
   @override
   void initState() {
@@ -26,7 +28,16 @@ class _LoginPageState extends State<LoginPage> {
     DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
         .listener(
       context: context,
-      successCallback: (notifier, listenerInstance) {},
+      everCallback: (notifier, listenerInstance) {
+        if (notifier is LoginController) {
+          if (notifier.hasInfo) {
+            Messages.of(context).showInfo(notifier.infoMessage ?? '');
+          }
+        }
+      },
+      successCallback: (notifier, listenerInstance) {
+        print('Login efetuado com sucesso!!!');
+      },
     );
   }
 
@@ -61,6 +72,11 @@ class _LoginPageState extends State<LoginPage> {
                             TodoListField(
                               label: 'E-mail',
                               controller: _emailEC,
+                              focusNode: _emailFocus,
+                              validator: Validatorless.multiple([
+                                Validatorless.required('E-mail obrigatória'),
+                                Validatorless.email('E-mail inválido'),
+                              ]),
                             ),
                             const SizedBox(
                               height: 20,
@@ -86,11 +102,32 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if (_emailEC.text.isNotEmpty) {
+                                      context
+                                          .read<LoginController>()
+                                          .forgotPasswor(_emailEC.text);
+                                    } else {
+                                      _emailFocus.requestFocus();
+                                      Messages.of(context).showError(
+                                          'Digite um e-mail para recuperar a senha');
+                                    }
+                                  },
                                   child: const Text('Esqueceu sua senha?'),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    final formValid =
+                                        _formKey.currentState?.validate() ??
+                                            false;
+                                    if (formValid) {
+                                      final email = _emailEC.text;
+                                      final password = _passwordEC.text;
+                                      context
+                                          .read<LoginController>()
+                                          .login(email, password);
+                                    }
+                                  },
                                   child: const Text('Login'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
@@ -131,7 +168,9 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide.none,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.read<LoginController>().googleLogin();
+                              },
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
