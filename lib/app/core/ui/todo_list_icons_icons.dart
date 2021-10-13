@@ -11,11 +11,15 @@
 ///      fonts:
 ///       - asset: fonts/TodoListIcons.ttf
 ///
-///
+/// 
 /// * Typicons, (c) Stephen Hutchings 2012
 ///         Author:    Stephen Hutchings
 ///         License:   SIL (http://scripts.sil.org/OFL)
 ///         Homepage:  http://typicons.com/
+/// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
 import 'package:flutter/widgets.dart';
 
@@ -25,9 +29,7 @@ class TodoListIcons {
   static const _kFontFam = 'TodoListIcons';
   static const String? _kFontPkg = null;
 
-  // ignore: constant_identifier_names
-  static const IconData eye_outline =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData eye =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData eye_outline = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData eye = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData filter = IconData(0xf0b0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
