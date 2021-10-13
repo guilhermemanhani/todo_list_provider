@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/TodoListIcons.ttf
 ///
-/// 
+///
 /// * Typicons, (c) Stephen Hutchings 2012
 ///         Author:    Stephen Hutchings
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -29,7 +29,11 @@ class TodoListIcons {
   static const _kFontFam = 'TodoListIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData eye_outline = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData eye = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData filter = IconData(0xf0b0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  // ignore: constant_identifier_names
+  static const IconData eye_outline =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData eye =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData filter =
+      IconData(0xf0b0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

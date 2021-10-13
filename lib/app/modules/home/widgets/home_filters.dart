@@ -19,7 +19,7 @@ class _HomeFiltersState extends State<HomeFilters> {
           'FILTROS',
           style: context.titleStyle,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         SingleChildScrollView(

@@ -1,5 +1,4 @@
 import 'package:flutter_todolist_provider/app/core/notifier/default_change_notifier.dart';
-import 'package:flutter_todolist_provider/app/core/ui/messages.dart';
 import 'package:flutter_todolist_provider/app/exception/auth_exceptions.dart';
 import 'package:flutter_todolist_provider/app/services/user/user_service.dart';
 
@@ -54,6 +53,7 @@ class LoginController extends DefaultChangeNotifier {
       infoMessage = null;
       notifyListeners();
       final user = _userService.googleLogin();
+      // ignore: unnecessary_null_comparison
       if (user != null) {
         success();
       } else {

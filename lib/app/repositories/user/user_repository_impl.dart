@@ -17,7 +17,9 @@ class UserRepositoryImpl implements UserRepository {
           email: email, password: password);
       return userCredencial.user;
     } on FirebaseAuthException catch (e, s) {
+      // ignore: avoid_print
       print(e);
+      // ignore: avoid_print
       print(s);
       //  email-already-exists
       if (e.code == 'email-already-in-use') {
@@ -44,11 +46,15 @@ class UserRepositoryImpl implements UserRepository {
           email: email, password: password);
       return userCredential.user;
     } on PlatformException catch (e, s) {
+      // ignore: avoid_print
       print(e);
+      // ignore: avoid_print
       print(s);
       throw AuthExceptions(message: e.message ?? 'Erro ao realizar login');
     } on FirebaseAuthException catch (e, s) {
+      // ignore: avoid_print
       print(e);
+      // ignore: avoid_print
       print(s);
       if (e.code == 'wrong-password') {
         throw AuthExceptions(message: 'Login ou senha inválidos');
@@ -72,7 +78,9 @@ class UserRepositoryImpl implements UserRepository {
         throw AuthExceptions(message: 'E-mail não cadastrado');
       }
     } on PlatformException catch (e, s) {
+      // ignore: avoid_print
       print(e);
+      // ignore: avoid_print
       print(s);
       throw AuthExceptions(message: 'Erro ao restar senha');
     }
@@ -103,7 +111,9 @@ class UserRepositoryImpl implements UserRepository {
         }
       }
     } on FirebaseAuthException catch (e, s) {
+      // ignore: avoid_print
       print(e);
+      // ignore: avoid_print
       print(s);
       if (e.code == 'account-exists-with-different-credential') {
         throw AuthExceptions(message: '''
@@ -124,12 +134,12 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> updateDisplayName(String name) async {
-    try {
-      final user = _firebaseAuth.currentUser;
-      if (user != null) {
-        await user.updateDisplayName(name);
-        user.reload();
-      }
-    } catch (e) {}
+    // try {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      await user.updateDisplayName(name);
+      user.reload();
+    }
+    // } catch (e) {}
   }
 }

@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       successCallback: (notifier, listenerInstance) {
+        // ignore: avoid_print
         print('Login efetuado com sucesso!!!');
       },
     );
