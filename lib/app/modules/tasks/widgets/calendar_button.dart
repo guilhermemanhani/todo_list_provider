@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist_provider/app/core/ui/theme_extensions.dart';
+import 'package:flutter_todolist_provider/app/modules/tasks/task_create_controller.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CalendarButton extends StatelessWidget {
-  const CalendarButton({Key? key}) : super(key: key);
+  final dateFormat = DateFormat('dd/MM/y');
+  CalendarButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class CalendarButton extends StatelessWidget {
           firstDate: DateTime(2000),
           lastDate: DateTime(2025),
         );
+        context.read<TaskCreateController>().selectedDate = selectedDate;
       },
       borderRadius: BorderRadius.circular(30),
       child: Container(
@@ -37,10 +42,19 @@ class CalendarButton extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Text(
-              'SELECIONE UMA DATA',
-              style: context.titleStyle,
-            )
+            Selector<TaskCreateController, DateTime?>(
+              selector: (context, controller) => controller.selectedDate,
+              builder: (context, selectedDate, child) {
+                if (selectedDate != null) {
+                  return Text(dateFormat.format(selectedDate));
+                } else {
+                  return Text(
+                    'SELECIONE UMA DATA',
+                    style: context.titleStyle,
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),
