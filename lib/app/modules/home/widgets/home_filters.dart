@@ -30,10 +30,7 @@ class HomeFilters extends StatelessWidget {
                 taskFilter: TaskFilterEnum.today,
                 totalTasksModel:
                     context.select<HomeController, TotalTasksModel?>(
-                        (controller) => controller.weekTotalTasks),
-                // context
-                //     .select<HomeController, TotalTasksModel>((controller) =>
-                //         controller.todayTotalTasks as TotalTasksModel),
+                        (controller) => controller.todayTotalTasks),
                 selected: context.select<HomeController, TaskFilterEnum>(
                         (value) => value.filterSelected) ==
                     TaskFilterEnum.today,
