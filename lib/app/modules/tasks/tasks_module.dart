@@ -25,7 +25,7 @@ class TasksModule extends TodoListModule {
               create: (context) => TaskCreateController(
                 tasksService: context.read(),
               ),
-            )
+            ),
           ],
           routers: {
             '/task/create': (context) => TaskCreatePage(
