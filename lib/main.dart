@@ -5,5 +5,5 @@ import 'package:flutter_todolist_provider/app/app_module.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(AppModule());
+  runApp(const AppModule());
 }

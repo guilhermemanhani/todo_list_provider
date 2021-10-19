@@ -5,7 +5,7 @@ import 'package:flutter_todolist_provider/app/repositories/user/user_repository.
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
 
   UserRepositoryImpl({required FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth;
@@ -134,12 +134,10 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> updateDisplayName(String name) async {
-    // try {
     final user = _firebaseAuth.currentUser;
     if (user != null) {
       await user.updateDisplayName(name);
       user.reload();
     }
-    // } catch (e) {}
   }
 }

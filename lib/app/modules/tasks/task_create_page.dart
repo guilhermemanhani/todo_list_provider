@@ -10,7 +10,7 @@ import 'package:validatorless/validatorless.dart';
 class TaskCreatePage extends StatefulWidget {
   final TaskCreateController _controller;
 
-  TaskCreatePage({
+  const TaskCreatePage({
     Key? key,
     required TaskCreateController controller,
   })  : _controller = controller,

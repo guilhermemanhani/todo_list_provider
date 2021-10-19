@@ -43,6 +43,10 @@ class Taks extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             side: const BorderSide(width: 1),
           ),
+          trailing: IconButton(
+            onPressed: () => context.read<HomeController>().deleteItem(model),
+            icon: const Icon(Icons.delete_forever_outlined),
+          ),
         ),
       ),
     );

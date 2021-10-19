@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_todolist_provider/app/core/database/sqlite_adm_connection.dart';
@@ -21,7 +21,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth auth = FirebaseAuth.instance;
+    // FirebaseAuth auth = FirebaseAuth.instance;
     WidgetsBinding.instance?.addObserver(sqliteAdmConnection);
   }
 
@@ -50,7 +50,7 @@ class _AppWidgetState extends State<AppWidget> {
         ...HomeModule().routers,
         ...TasksModule().routers,
       },
-      home: SplashPage(),
+      home: const SplashPage(),
     );
   }
 }

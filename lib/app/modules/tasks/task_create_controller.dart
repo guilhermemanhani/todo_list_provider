@@ -2,7 +2,7 @@ import 'package:flutter_todolist_provider/app/core/notifier/default_change_notif
 import 'package:flutter_todolist_provider/app/services/tasks/tasks_service.dart';
 
 class TaskCreateController extends DefaultChangeNotifier {
-  TasksService _tasksService;
+  final TasksService _tasksService;
   DateTime? _selectedDate;
 
   TaskCreateController({required TasksService tasksService})

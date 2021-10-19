@@ -29,6 +29,16 @@ class HomeTasks extends StatelessWidget {
               );
             },
           ),
+          // ListView.builder(itemBuilder: (context, i){
+          //   return context
+          //       .select<HomeController, List<TaskModel>>(
+          //           (controller) => controller.filteredTasks)
+          //           Dismissible(
+          //     onDismissed: (left) {
+          //       context.read<HomeController>().deleteItem()
+          //     },
+          //   );
+          // })
           Column(
             children: context
                 .select<HomeController, List<TaskModel>>(
