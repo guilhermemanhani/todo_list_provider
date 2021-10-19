@@ -36,7 +36,7 @@ class HomeController extends DefaultChangeNotifier {
 
     tomorrowTotalTasks = TotalTasksModel(
       totalTasks: tomorrowTasks.length,
-      totalTasksFinish: todayTasks.where((task) => task.finished).length,
+      totalTasksFinish: tomorrowTasks.where((task) => task.finished).length,
     );
 
     weekTotalTasks = TotalTasksModel(
