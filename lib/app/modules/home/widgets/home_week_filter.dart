@@ -19,35 +19,39 @@ class HomeWeekFilter extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'DIA DA SEMANA',
-            style: context.titleStyle,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'DIA DA SEMANA',
+              style: context.titleStyle,
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
           SizedBox(
-              height: 95,
-              child: Selector<HomeController, DateTime>(
-                selector: (context, controller) =>
-                    controller.initialDateOfWeek ?? DateTime.now(),
-                builder: (_, value, __) {
-                  return DatePicker(
-                    value,
-                    locale: 'pt_BR',
-                    selectionColor: context.primaryColor,
-                    selectedTextColor: Colors.white,
-                    initialSelectedDate: value,
-                    daysCount: 7,
-                    monthTextStyle: const TextStyle(fontSize: 8),
-                    dayTextStyle: const TextStyle(fontSize: 13),
-                    dateTextStyle: const TextStyle(fontSize: 13),
-                    onDateChange: (date) {
-                      context.read<HomeController>().filterByDay(date);
-                    },
-                  );
-                },
-              )),
+            height: 95,
+            child: Selector<HomeController, DateTime>(
+              selector: (context, controller) =>
+                  controller.initialDateOfWeek ?? DateTime.now(),
+              builder: (_, value, __) {
+                return DatePicker(
+                  value,
+                  locale: 'pt_BR',
+                  selectionColor: context.primaryColor,
+                  selectedTextColor: Colors.white,
+                  initialSelectedDate: value,
+                  daysCount: 7,
+                  monthTextStyle: const TextStyle(fontSize: 8),
+                  dayTextStyle: const TextStyle(fontSize: 13),
+                  dateTextStyle: const TextStyle(fontSize: 13),
+                  onDateChange: (date) {
+                    context.read<HomeController>().filterByDay(date);
+                  },
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       drawer: HomeDrawer(),
       appBar: AppBar(
         iconTheme: IconThemeData(color: context.primaryColor),
-        backgroundColor: const Color(0xFFFAFBFE),
+        backgroundColor: Colors.white,
         // title: const Text('Home'),
         elevation: 0,
         actions: [
@@ -91,33 +91,35 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       backgroundColor: const Color(0xFFFAFBFE),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-              minWidth: constraints.maxWidth,
-            ),
-            child: Container(
-              color: Colors.white,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: IntrinsicHeight(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    HomeHeader(),
-                    HomeFilters(),
-                    HomeWeekFilter(),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    HomeTasks(),
-                  ],
+      body: Container(
+        color: Colors.white,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+                minWidth: constraints.maxWidth,
+              ),
+              child: Container(
+                color: Colors.white,
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      HomeHeader(),
+                      HomeFilters(),
+                      HomeWeekFilter(),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      HomeTasks(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

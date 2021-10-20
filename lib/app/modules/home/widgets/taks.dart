@@ -16,7 +16,7 @@ class Taks extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
-          BoxShadow(color: Colors.grey),
+          BoxShadow(color: Colors.grey, blurRadius: 5),
         ],
       ),
       margin: const EdgeInsets.symmetric(vertical: 5),

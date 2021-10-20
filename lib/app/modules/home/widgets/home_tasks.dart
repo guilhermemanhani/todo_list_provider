@@ -12,10 +12,10 @@ class HomeTasks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          physics: const ScrollPhysics(),
+      child: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,14 +46,18 @@ class HomeTasks extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           final item = value[index];
-                          return Dismissible(
-                            onDismissed: (val) {
-                              context
-                                  .read<HomeController>()
-                                  .deleteItem(value[index]);
-                            },
-                            key: Key(item.description),
-                            child: Taks(model: value[index]),
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            child: Dismissible(
+                              onDismissed: (val) {
+                                context
+                                    .read<HomeController>()
+                                    .deleteItem(value[index]);
+                              },
+                              key: Key(item.description),
+                              child: Taks(model: value[index]),
+                            ),
                           );
                         },
                       );

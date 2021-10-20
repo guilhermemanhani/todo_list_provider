@@ -8,8 +8,9 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
           Selector<AuthProvider, String>(

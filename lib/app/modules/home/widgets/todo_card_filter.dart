@@ -45,14 +45,17 @@ class TodoCardFilter extends StatelessWidget {
           minHeight: 120,
           maxWidth: 150,
         ),
-        margin: const EdgeInsets.only(right: 10),
+        margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: selected ? context.primaryColor : Colors.white,
           border: Border.all(
             width: 1,
-            color: Colors.grey.withOpacity(.8),
+            color: Colors.grey,
           ),
+          boxShadow: const [
+            BoxShadow(color: Colors.grey, blurRadius: 5),
+          ],
           borderRadius: BorderRadius.circular(30),
         ),
         child: Column(
