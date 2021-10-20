@@ -93,24 +93,26 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFFAFBFE),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-                minWidth: constraints.maxWidth,
-              ),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: IntrinsicHeight(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      HomeHeader(),
-                      HomeFilters(),
-                      HomeWeekFilter(),
-                      HomeTasks(),
-                    ],
-                  ),
+          return ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+              minWidth: constraints.maxWidth,
+            ),
+            child: Container(
+              color: Colors.white,
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: IntrinsicHeight(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    HomeHeader(),
+                    HomeFilters(),
+                    HomeWeekFilter(),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    HomeTasks(),
+                  ],
                 ),
               ),
             ),

@@ -11,46 +11,59 @@ class HomeTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Selector<HomeController, String>(
-            selector: (context, controller) {
-              return controller.filterSelected.description;
-            },
-            builder: (context, value, child) {
-              return Text(
-                'TASK\'S DE $value',
-                style: context.titleStyle,
-              );
-            },
-          ),
-          // ListView.builder(itemBuilder: (context, i){
-          //   return context
-          //       .select<HomeController, List<TaskModel>>(
-          //           (controller) => controller.filteredTasks)
-          //           Dismissible(
-          //     onDismissed: (left) {
-          //       context.read<HomeController>().deleteItem()
-          //     },
-          //   );
-          // })
-          Column(
-            children: context
-                .select<HomeController, List<TaskModel>>(
-                    (controller) => controller.filteredTasks)
-                .map(
-                  (t) => Taks(
-                    model: t,
+    return Flexible(
+      child: Container(
+        color: Colors.white,
+        child: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Selector<HomeController, String>(
+                selector: (context, controller) {
+                  return controller.filterSelected.description;
+                },
+                builder: (context, value, child) {
+                  return Text(
+                    'TASK\'S DE $value',
+                    style: context.titleStyle,
+                  );
+                },
+              ),
+              Column(
+                children: [
+                  Selector<HomeController, List<TaskModel>>(
+                    selector: (context, controller) {
+                      return controller.filteredTasks;
+                    },
+                    builder: (context, value, child) {
+                      return ListView.builder(
+                        itemCount: value.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final item = value[index];
+                          return Dismissible(
+                            onDismissed: (val) {
+                              context
+                                  .read<HomeController>()
+                                  .deleteItem(value[index]);
+                            },
+                            key: Key(item.description),
+                            child: Taks(model: value[index]),
+                          );
+                        },
+                      );
+                    },
                   ),
-                )
-                .toList(),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
